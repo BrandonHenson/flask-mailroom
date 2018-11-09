@@ -1,0 +1,21 @@
+{% extends 'base.jinja2' %}
+
+{% block subtitle %}VIEW DONOR INFORMATION{% endblock subtitle %}
+
+{% block content %}
+<p>CHOOSE A DONOR</p>
+<form method="GET">
+    {% if error %}<span class="error">{{ error }}<br><br>{% endif %}
+    <label for="name-input">Donor: </label><input id="name-input" type="text" name="name"><br><br>
+    <input type="submit" value="GET DONOR INFORMATION">
+</form>
+{% if donations %}
+<p>Here are the donations from {{ name }}:</p>
+<ul>
+    {% for donation in donations %}
+        <li><b>{{ donation.donor.name }}</b>: {{ donation.value }}</li>
+    {% endfor %}
+</ul>
+<p>{{ name }} has donated ${{ total }}</p>
+{% endif %}
+{% endblock content %}
